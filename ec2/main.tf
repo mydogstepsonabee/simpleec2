@@ -25,14 +25,19 @@ resource "aws_instance" "node" {
   tags = {
     Name = "TF Generated EC2"
   }
- # metadata_options {
- #   http_endpoint = "enabled"
- #   http_tokens = "required"
- # }
+  # metadata_options {
+  #   http_endpoint = "enabled"
+  #   http_tokens = "required"
+  # }
   user_data = file("${path.root}/ec2/userdata.tpl")
 
   root_block_device {
     volume_size = 10
+  }
+
+  metadata_options {
+    http_endpoint = "disabled"
+    http_tokens   = "required"
   }
 }
 
