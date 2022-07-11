@@ -14,3 +14,7 @@ logs
 *.tfvars
 .ssh
 *.pem
+
+# Scan
+config_*
+accurics_*
