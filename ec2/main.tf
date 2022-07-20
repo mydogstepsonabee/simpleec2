@@ -34,6 +34,11 @@ resource "aws_instance" "node" {
   root_block_device {
     volume_size = 10
   }
+
+  metadata_options {
+    http_endpoint = "disabled"
+    http_tokens   = "required"
+  }
 }
 
 # Create and assosiate an Elastic IP
