@@ -26,9 +26,9 @@ resource "aws_instance" "node" {
     Name = "TF Generated EC2"
   }
   metadata_options {
-     http_endpoint = "disabled"
-     http_tokens = "required"
-   }
+    http_endpoint = "disabled"
+    http_tokens   = "required"
+  }
   user_data = file("${path.root}/ec2/userdata.tpl")
 
   root_block_device {
@@ -40,6 +40,7 @@ resource "aws_instance" "node" {
   # http_tokens   = "required"
   #}
   #monitoring = true
+  monitoring = true
 }
 
 # Create and assosiate an Elastic IP
