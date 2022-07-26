@@ -13,8 +13,14 @@ resource "aws_key_pair" "key_pair" {
     command = "echo '${tls_private_key.key.private_key_pem}' > ./key.pem"
   }
 }
-data "template_file" "user_data"{
-  template = file("${path.root}/ec2/userdata.tpl")
+data "cloudinit_config" "user_data"{
+  gzip = true
+  base64_encode = true
+  part {
+    content_type="text/x-shellscript"
+    content = "baz"
+    filename = "userdata.sh"
+  }
 }
 # Create a EC2 Instance (Ubuntu 20)
 resource "aws_instance" "node" {
@@ -30,7 +36,7 @@ resource "aws_instance" "node" {
 
   #user_data = file("${path.root}/ec2/userdata.tpl")
   #user_data_replace_on_change = true
-  user_data = data.template_file.user_data.rendered
+  user_data = data.cloudinit_config.user_data.rendered
 
   root_block_device {
     volume_size = 10
