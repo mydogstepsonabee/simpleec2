@@ -164,27 +164,3 @@ resource "aws_s3_bucket" "vpc" {
     }
   }
 }
-resource "aws_s3_bucket_policy" "vpc" {
-  bucket = "${aws_s3_bucket.vpc.id}"
-
-  policy = <<POLICY
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "vpc-restrict-access-to-users-or-roles",
-      "Effect": "Allow",
-      "Principal": [
-        {
-          "AWS": [
-            <principal_arn>
-          ]
-        }
-      ],
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::${aws_s3_bucket.vpc.id}/*"
-    }
-  ]
-}
-POLICY
-}
