@@ -5,9 +5,9 @@ resource "aws_vpc" "vpc" {
   enable_dns_support   = true
   instance_tenancy     = "default"
 
-  #tags = {
-  #  Name = "VPC"
-  #}
+  tags = {
+    Name = "VPC"
+  }
 }
 
 # Create a Public Subnet
@@ -17,9 +17,9 @@ resource "aws_subnet" "public_subnet" {
   map_public_ip_on_launch = false
   availability_zone       = data.aws_availability_zones.available.names[0]
 
- # tags = {
- #   Name = "Public Subnet"
- # }
+  tags = {
+    Name = "Public Subnet"
+  }
 }
 
 # Associate the Public Route Table to the Public Subnet
@@ -32,18 +32,18 @@ resource "aws_route_table_association" "public_assoc" {
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
 
-# tags = {
-#  Name = "IGW"
-#}
+ tags = {
+  Name = "IGW"
+}
 }
 
 # Create a Public Route Table
 resource "aws_route_table" "public_rt" {
   vpc_id = aws_vpc.vpc.id
 
- # tags = {
- #   Name = "Public RT"
- # }
+  tags = {
+    Name = "Public RT"
+  }
 }
 
 # Create a Route
