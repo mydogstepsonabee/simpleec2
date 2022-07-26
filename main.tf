@@ -10,3 +10,10 @@ module "ec2" {
   public_sg     = module.network.public_sg
   public_subnet = module.network.public_subnet
 }
+
+resource "aws_s3_bucket" "terraform_state" {
+  bucket = "example-terraform-state"
+  versioning {
+    enabled = true
+  }
+}
