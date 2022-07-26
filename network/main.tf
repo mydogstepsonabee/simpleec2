@@ -82,6 +82,49 @@ resource "aws_security_group" "sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+resource "aws_s3_bucket" "vpc" {
+  bucket        = "vpc_flow_log_s3_bucket"
+  acl           = "private"
+  force_destroy = true
+
+  versioning {
+    enabled    = true
+    mfa_delete = true
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+}
+resource "aws_s3_bucket_policy" "vpc" {
+  bucket = "${aws_s3_bucket.vpc.id}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "vpc-restrict-access-to-users-or-roles",
+      "Effect": "Allow",
+      "Principal": [
+        {
+          "AWS": [
+            <principal_arn>
+          ]
+        }
+      ],
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::${aws_s3_bucket.vpc.id}/*"
+    }
+  ]
+}
+POLICY
+}
 resource "aws_flow_log" "vpc" {
   vpc_id          = "${aws_vpc.vpc.id}"
   iam_role_arn    = "<iam_role_arn>"
@@ -135,4 +178,3 @@ resource "aws_s3_bucket_policy" "vpc" {
 }
 POLICY
 }
-
