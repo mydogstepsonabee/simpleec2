@@ -17,9 +17,9 @@ resource "aws_subnet" "public_subnet" {
   map_public_ip_on_launch = false
   availability_zone       = data.aws_availability_zones.available.names[0]
 
-  tags = {
-    Name = "Public Subnet"
-  }
+  #tags = {
+  #  Name = "Public Subnet"
+  #}
 }
 
 # Associate the Public Route Table to the Public Subnet
