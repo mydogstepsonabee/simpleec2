@@ -11,9 +11,9 @@ module "ec2" {
   public_subnet = module.network.public_subnet
 }
 
-resource "aws_s3_bucket" "terraform_state" {
-  bucket = "example-terraform-state"
-  versioning {
-    enabled = true
-  }
-}
+#resource "aws_s3_bucket" "terraform_state" {
+#  bucket = "example-terraform-state"
+#  versioning {
+#    enabled = true
+#  }
+#}
