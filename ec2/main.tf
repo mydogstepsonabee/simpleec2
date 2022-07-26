@@ -27,7 +27,7 @@ resource "aws_instance" "node" {
   }
 
   user_data = file("${path.root}/ec2/userdata.tpl")
-
+  user_data_base64 = null
   root_block_device {
     volume_size = 10
   }
