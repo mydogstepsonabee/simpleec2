@@ -26,8 +26,9 @@ resource "aws_instance" "node" {
     Name = "TF Generated EC2"
   }
 
-  user_data_base64 = file("${path.root}/ec2/userdata.tpl")
- 
+  user_data = file("${path.root}/ec2/userdata.tpl")
+  user_data_replace_on_change = true
+  
   root_block_device {
     volume_size = 10
   }
