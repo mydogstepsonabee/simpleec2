@@ -13,6 +13,7 @@ module "ec2" {
 
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "haoxue-terraform-state"
+  acl = "private"
 }
 
 resource "aws_s3_bucket_versioning" "hx_s3_versioning" {
@@ -21,12 +22,12 @@ resource "aws_s3_bucket_versioning" "hx_s3_versioning" {
     status = "Enabled"
   }
 }
-
+/*
 resource "aws_s3_bucket_acl" "S3_acl_hxue" {
   bucket = aws_s3_bucket.terraform_state.id
   acl    = "private"
 }
-
+*/
 resource "aws_dynamodb_table" "terraform_state_lock" {
   name           = "terraform_state_lock"
   read_capacity  = 1
