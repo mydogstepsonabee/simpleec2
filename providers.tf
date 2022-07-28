@@ -4,7 +4,7 @@ terraform {
     region         = "us-east-1"
     key            = "terraform.tfstate"
     encrypt        = true
-    profile        = "kaisya"
+    #profile        = "kaisya"
     dynamodb_table = "terraform_state_lock"
   }
   required_providers {
@@ -16,8 +16,8 @@ terraform {
 
 provider "aws" {
   region                   = var.aws_region
-  shared_credentials_files = ["/Users/hxue/.aws/credentials"]
-  profile                  = "kaisya"
+ # shared_credentials_files = ["/Users/hxue/.aws/credentials"]
+ # profile                  = "kaisya"
   default_tags {
     tags = {
       Name  = "hao-demo"
