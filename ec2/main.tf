@@ -30,10 +30,6 @@ resource "aws_instance" "node" {
   vpc_security_group_ids = [var.public_sg]
   subnet_id              = var.public_subnet
 
-  tags = {
-    Name = "TF Generated EC2"
-  }
-
   #user_data = file("${path.root}/ec2/userdata.tpl")
   #user_data_replace_on_change = true
   user_data = data.cloudinit_config.user_data.rendered
