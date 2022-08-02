@@ -13,13 +13,13 @@ resource "aws_key_pair" "key_pair" {
     command = "echo '${tls_private_key.key.private_key_pem}' > ./key.pem"
   }
 }
-data "cloudinit_config" "user_data"{
-  gzip = true
+data "cloudinit_config" "user_data" {
+  gzip          = true
   base64_encode = true
   part {
-    content_type="text/x-shellscript"
-    content = "baz"
-    filename = "userdata.sh"
+    content_type = "text/x-shellscript"
+    content      = "baz"
+    filename     = "userdata.sh"
   }
 }
 # Create a EC2 Instance (Ubuntu 20)
@@ -43,7 +43,12 @@ resource "aws_instance" "node" {
   # http_tokens   = "required"
   #}
   #monitoring = true
-  
+
+
+  metadata_options {
+    http_endpoint = "disabled"
+    http_tokens   = "required"
+  }
 }
 
 # Create and assosiate an Elastic IP
