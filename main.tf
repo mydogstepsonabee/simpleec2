@@ -11,6 +11,7 @@ module "ec2" {
   public_subnet = module.network.public_subnet
 }
 
+/*
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "haoxue-terraform-state"
 }
@@ -38,3 +39,4 @@ resource "aws_dynamodb_table" "terraform_state_lock" {
     type = "S"
   }
 }
+*/
