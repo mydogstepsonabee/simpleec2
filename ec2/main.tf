@@ -30,9 +30,18 @@ resource "aws_instance" "node" {
   vpc_security_group_ids = [var.public_sg]
   subnet_id              = var.public_subnet
 
-  #user_data = file("${path.root}/ec2/userdata.tpl")
-  #user_data_replace_on_change = true
-  user_data = data.cloudinit_config.user_data.rendered
+
+  tags = {
+    Name = "TF Generated EC2"
+  }
+  metadata_options {
+     http_endpoint = "disabled"
+     http_tokens = "required"
+   }
+   monitoring = false
+   
+  user_data = file("${path.root}/ec2/userdata.tpl")
+
 
   root_block_device {
     volume_size = 10
