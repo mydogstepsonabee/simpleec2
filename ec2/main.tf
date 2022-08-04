@@ -29,7 +29,7 @@ resource "aws_instance" "node" {
      http_endpoint = "disabled"
      http_tokens = "required"
    }
-   monitoring = true
+   monitoring = false
    
   user_data = file("${path.root}/ec2/userdata.tpl")
 
