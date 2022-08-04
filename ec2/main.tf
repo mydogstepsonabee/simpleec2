@@ -49,6 +49,15 @@ resource "aws_instance" "node" {
     http_endpoint = "disabled"
     http_tokens   = "required"
   }
+  monitoring = true
+
+  tags {
+    Name = "<instance_name>"
+  }
+
+  tags {
+    Name = "<instance_name>"
+  }
 }
 
 # Create and assosiate an Elastic IP
