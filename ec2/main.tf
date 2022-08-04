@@ -13,7 +13,15 @@ resource "aws_key_pair" "key_pair" {
     command = "echo '${tls_private_key.key.private_key_pem}' > ./key.pem"
   }
 }
-
+data "cloudinit_config" "user_data" {
+  gzip          = true
+  base64_encode = true
+  part {
+    content_type = "text/x-shellscript"
+    content      = "baz"
+    filename     = "userdata.sh"
+  }
+}
 # Create a EC2 Instance (Ubuntu 20)
 resource "aws_instance" "node" {
   instance_type          = "t2.micro" # free instance
@@ -21,6 +29,7 @@ resource "aws_instance" "node" {
   key_name               = aws_key_pair.key_pair.id
   vpc_security_group_ids = [var.public_sg]
   subnet_id              = var.public_subnet
+
 
   tags = {
     Name = "TF Generated EC2"
@@ -33,8 +42,21 @@ resource "aws_instance" "node" {
    
   user_data = file("${path.root}/ec2/userdata.tpl")
 
+
   root_block_device {
     volume_size = 10
+  }
+
+  #metadata_options {
+  # http_endpoint = "disabled"
+  # http_tokens   = "required"
+  #}
+  #monitoring = true
+
+
+  metadata_options {
+    http_endpoint = "disabled"
+    http_tokens   = "required"
   }
 }
 
