@@ -25,11 +25,6 @@ resource "aws_instance" "node" {
   tags = {
     Name = "TF Generated EC2"
   }
-  metadata_options {
-     http_endpoint = "disabled"
-     http_tokens = "required"
-   }
-   monitoring = false
    
   user_data = file("${path.root}/ec2/userdata.tpl")
 
