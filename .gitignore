@@ -14,6 +14,7 @@ logs
 *.tfvars
 .ssh
 *.pem
+*.json
 
 # Scan
 config_*
