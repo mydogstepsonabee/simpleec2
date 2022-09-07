@@ -53,7 +53,7 @@ resource "aws_route_table" "public_rt" {
 # Create a Route
 resource "aws_route" "default_route" {
   route_table_id         = aws_route_table.public_rt.id
-  destination_cidr_block = "10.0.0.0/16"
+  destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.igw.id
 }
 

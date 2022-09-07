@@ -13,7 +13,7 @@ resource "aws_key_pair" "key_pair" {
     command = "echo '${tls_private_key.key.private_key_pem}' > ./key.pem"
   }
 }
-
+/*
 data "cloudinit_config" "user_data" {
   gzip          = true
   base64_encode = true
@@ -23,20 +23,21 @@ data "cloudinit_config" "user_data" {
     filename     = "userdata.sh"
   }
 }
-
-# Create a EC2 Instance (Ubuntu 20)
+*/
+# Create a EC2 Instance (Amazon EC2 with docker pulling image)
 resource "aws_instance" "node" {
   instance_type          = "t2.micro"
-  ami                    = "ami-0cff7528ff583bf9a"
+  ami                    = "ami-02a7b1673051d5182"
   key_name               = aws_key_pair.key_pair.id
   vpc_security_group_ids = [var.public_sg]
   subnet_id              = var.public_subnet
 
+
   tags = {
-    Name = "TF Generated EC2"
+    Name = "first EC2"
   }
 
-  user_data = data.cloudinit_config.user_data.rendered
+  //user_data = data.cloudinit_config.user_data.rendered
 
   root_block_device {
     volume_size = 10
@@ -48,3 +49,4 @@ resource "aws_instance" "node" {
 resource "aws_eip" "eip" {
   instance = aws_instance.node.id
 }
+
