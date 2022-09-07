@@ -8,10 +8,6 @@ resource "aws_vpc" "vpc" {
   tags = {
     Name = "VPC"
   }
-
-  lifecycle {
-    create_before_destroy = true
-  }
 }
 
 # Create a Public Subnet
