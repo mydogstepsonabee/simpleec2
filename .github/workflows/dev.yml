@@ -38,7 +38,7 @@ jobs:
           # Required by Accurics
           app-id: ${{ secrets.ACCURICS_APP_ID }}
           env-id: ${{ secrets.ACCURICS_ENV_ID }}
-          repo: "https://github.com/mydogstepsonabee/test-aws.git"
+          repo: "https://github.com/mydogstepsonabee/simpleec2.git"
           # Optional args
           #plan-args: '-var myvar1=val1 -var myvar2=val2'
           fail-on-violations: false
