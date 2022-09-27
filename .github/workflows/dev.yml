@@ -44,7 +44,7 @@ jobs:
           fail-on-violations: false
           url: "https://cloud.tenable.com/cns"
           scan-mode: "scan"
-          pipeline: true
+          pipeline: false
       - name: Display statistics
         run: '
             echo "";
