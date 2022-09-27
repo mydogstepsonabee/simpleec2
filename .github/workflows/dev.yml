@@ -43,7 +43,7 @@ jobs:
           #plan-args: '-var myvar1=val1 -var myvar2=val2'
           fail-on-violations: false
           url: "https://cloud.tenable.com/cns"
-          scan-mode: "plan"
+          scan-mode: "scan"
           pipeline: true
       - name: Display statistics
         run: '
