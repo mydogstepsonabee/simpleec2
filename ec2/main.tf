@@ -31,7 +31,7 @@ resource "aws_instance" "node" {
   key_name               = aws_key_pair.key_pair.id
   vpc_security_group_ids = [var.public_sg]
   subnet_id              = var.public_subnet
-
+  user_data = data.cloudinit_config.user_data.rendered
 
   tags = {
     Name = "first EC2"
