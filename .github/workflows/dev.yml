@@ -47,27 +47,27 @@ jobs:
           pipeline: true
       - name: Display statistics
         run: '
-            echo ""
+            echo "";
             echo "Environment Name           : ${{ steps.accurics.outputs.env-name }}";
             echo "Repository                 : ${{ steps.accurics.outputs.repo }}";
             echo "Violation Count            : ${{ steps.accurics.outputs.num-violations }}";
             echo "Resource Count             : ${{ steps.accurics.outputs.num-resources }}";
-            echo ""
+            echo "";
             echo "Native Resources           : ${{ steps.accurics.outputs.native }}";
             echo "Inherited Resources        : ${{ steps.accurics.outputs.inherited }}";
-            echo ""
+            echo "";
             echo "High-Severity Violations   : ${{ steps.accurics.outputs.high }}";
             echo "Medium-Severity Violations : ${{ steps.accurics.outputs.medium }}";
             echo "Low-Severity Violations    : ${{ steps.accurics.outputs.low }}";
-            echo ""
+            echo "";
             echo "Drift                      : ${{ steps.accurics.outputs.drift }}";
             echo "IaC Drift                  : ${{ steps.accurics.outputs.iacdrift }}";
             echo "Cloud Drift                : ${{ steps.accurics.outputs.clouddrift }}";
             echo ""
-          '
+             '
       - name: Check Number Of violations
         if: ${{ steps.accurics.outputs.num-violations > 10 }}
         uses: actions/github-script@v3
         with:
           script: |
-              core.setFailed('Coverage test below tolerance');
+              core.setFailed('Coverage test below tolerance')
