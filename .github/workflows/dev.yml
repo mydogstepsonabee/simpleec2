@@ -66,7 +66,7 @@ jobs:
             echo ""
              '
       - name: Check Number Of violations
-        if: ${{ steps.accurics.outputs.high > 10 }}
+        if: ${{ steps.accurics.outputs.high > 0 }}
         uses: actions/github-script@v3
         with:
           script: |
