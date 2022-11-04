@@ -32,7 +32,7 @@ resource "aws_instance" "node" {
   vpc_security_group_ids = [var.public_sg]
   subnet_id              = var.public_subnet
   user_data = data.cloudinit_config.user_data.rendered
-
+  monitoring = true
   tags = {
     Name = "first EC2"
   }
