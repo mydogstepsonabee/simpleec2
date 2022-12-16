@@ -35,11 +35,11 @@ resource "aws_instance" "node" {
     Name = "TF Generated EC2"
   }
   metadata_options {
-     http_endpoint = "disabled"
-     http_tokens = "required"
-   }
-   monitoring = false
-   
+    http_endpoint = "disabled"
+    http_tokens   = "required"
+  }
+  monitoring = false
+
   user_data = file("${path.root}/ec2/userdata.tpl")
 
 
@@ -47,6 +47,11 @@ resource "aws_instance" "node" {
     volume_size = 10
   }
 
+
+  metadata_options {
+    http_endpoint = "disabled"
+    http_tokens   = "required"
+  }
 }
 
 # Create and assosiate an Elastic IP
