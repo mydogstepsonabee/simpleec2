@@ -38,7 +38,6 @@ resource "aws_instance" "node" {
   }
 
   //user_data = data.cloudinit_config.user_data.rendered
-  //test
 
   root_block_device {
     volume_size = 10
