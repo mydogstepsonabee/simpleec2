@@ -27,7 +27,7 @@ data "cloudinit_config" "user_data" {
 # Create a EC2 Instance (Amazon EC2 with docker pulling image)
 resource "aws_instance" "node" {
   instance_type          = "t2.micro"
-  ami                    = "ami-02a7b1673051d5182"
+  ami                    = "ami-0f6ee6ba26a44b0f7"
   key_name               = aws_key_pair.key_pair.id
   vpc_security_group_ids = [var.public_sg]
   subnet_id              = var.public_subnet
