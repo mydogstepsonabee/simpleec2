@@ -1,14 +1,4 @@
 terraform {
-  /*
-  backend "s3" {
-    bucket         = "haoxue-terraform-state"
-    region         = "us-east-1"
-    key            = "terraform.tfstate"
-    encrypt        = true
-    profile        = "kaisya"
-    dynamodb_table = "terraform_state_lock"
-  }
-  */
   required_providers {
     aws = {
       source = "hashicorp/aws"
